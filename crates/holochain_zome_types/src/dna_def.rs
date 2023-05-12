@@ -375,7 +375,8 @@ impl HashableContent for DnaDef {
     fn hashable_content(&self) -> HashableContentBytes {
         let hash = DnaDefHash {
             modifiers: &self.modifiers,
-            integrity_zomes: &self.integrity_zomes,
+            // integrity_zomes: &self.integrity_zomes,
+            integrity_zomes: &vec![],
         };
         HashableContentBytes::Content(
             holochain_serialized_bytes::UnsafeBytes::from(
