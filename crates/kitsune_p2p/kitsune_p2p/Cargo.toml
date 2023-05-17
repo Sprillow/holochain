@@ -43,7 +43,8 @@ thiserror = "1.0.22"
 tokio = { version = "1.27", features = ["full"] }
 tracing = "0.1"
 tokio-stream = "0.1"
-tx5 = { version = "=0.0.1-alpha.16", optional = true }
+# tx5 = { version = "=0.0.1-alpha.16", optional = true }
+tx5 = { git = "https://github.com/holochain/tx5.git", rev = "61535aacbf6b56d7265fbbe55a1dd617a9865e95", optional = true }
 url2 = "0.0.6"
 fixt = { path = "../../fixt", version = "^0.2.0"}
 
