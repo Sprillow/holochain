@@ -378,6 +378,7 @@ impl HashableContent for DnaDef {
             // integrity_zomes: &self.integrity_zomes,
             integrity_zomes: &vec![],
         };
+        tracing::error!("hashable_content: {:?}", hash);
         HashableContentBytes::Content(
             holochain_serialized_bytes::UnsafeBytes::from(
                 holochain_serialized_bytes::encode(&hash)
