@@ -14,6 +14,7 @@ pub(crate) async fn handle_rpc_multi_as_single(
     ro_inner: Arc<SpaceReadOnlyInner>,
     local_joined_agents: HashSet<Arc<KitsuneAgent>>,
 ) -> KitsuneP2pResult<Vec<actor::RpcMultiResponse>> {
+    tracing::error!("handle_rpc_multi_as_single");
     let RpcMulti {
         space,
         basis,
@@ -101,6 +102,7 @@ pub(crate) async fn handle_rpc_multi_as_single(
                         }
                     }
                 }
+                tracing::error!("infos: {:?}", infos);
 
                 if let Some(mut infos) = infos {
                     rand::seq::SliceRandom::shuffle(infos.as_mut_slice(), &mut rand::thread_rng());
