@@ -164,6 +164,7 @@ impl SpaceInternalHandler for Space {
     ) -> SpaceInternalHandlerResult<HashSet<Arc<KitsuneAgent>>> {
         let mut res: HashSet<Arc<KitsuneAgent>> =
             self.local_joined_agents.keys().cloned().collect();
+        tracing::error!("handle_list_online_agents_for_basis_hash");
         let all_peers_fut = self
             .evt_sender
             .query_agents(QueryAgentsEvt::new(self.space.clone()));

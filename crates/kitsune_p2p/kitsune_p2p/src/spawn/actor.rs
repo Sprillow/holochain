@@ -365,6 +365,7 @@ impl KitsuneP2pActor {
                                                     let query = QueryAgentsEvt::new(space)
                                                         .near_basis(basis_loc)
                                                         .limit(LIMIT);
+                                                    tracing::error!("KitsuneP2pActor::new");
                                                     let resp = match evt_sender
                                                         .query_agents(query)
                                                         .await

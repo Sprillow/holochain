@@ -264,6 +264,7 @@ pub(crate) fn get_cached_remotes_near_basis(
         let query = QueryAgentsEvt::new(inner.space.clone())
             .near_basis(basis_loc)
             .limit(LIMIT);
+        tracing::error!("get_cached_remotes_near_basis");
         for node in inner.evt_sender.query_agents(query).await? {
             if !inner
                 .i_s
