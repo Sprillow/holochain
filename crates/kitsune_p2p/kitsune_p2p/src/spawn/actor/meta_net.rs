@@ -308,13 +308,16 @@ impl MetaNetCon {
         let result = (move || async move {
             #[cfg(feature = "tx2")]
             {
+                tracing::debug!("checking tx2");
                 if let MetaNetCon::Tx2(con) = self {
+                    tracing::debug!("running tx2 con.request");
                     return con.request(payload, timeout).await;
                 }
             }
 
             #[cfg(feature = "tx5")]
             {
+                tracing::debug!("checking tx5");
                 if let MetaNetCon::Tx5 {
                     ep,
                     rem_url,
@@ -322,6 +325,7 @@ impl MetaNetCon {
                     ..
                 } = self
                 {
+                    tracing::debug!("running tx5 request");
                     let (s, r) = tokio::sync::oneshot::channel();
                     res_store.lock().insert(msg_id, s);
 
@@ -338,6 +342,7 @@ impl MetaNetCon {
                     ep.send(rem_url.clone(), data.as_slice())
                         .await
                         .map_err(KitsuneError::other)?;
+                    tracing::debug!("sent message, waiting for response");
                     return r.await.map_err(|_| KitsuneError::other("timeout"));
                 }
             }
