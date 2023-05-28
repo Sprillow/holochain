@@ -154,6 +154,7 @@ pub(crate) fn search_remotes_covering_basis(
     basis_loc: DhtLocation,
     timeout: KitsuneTimeout,
 ) -> impl Future<Output = KitsuneP2pResult<Vec<AgentInfoSigned>>> + 'static + Send {
+    tracing::error!("search_remotes_covering_basis");
     const INITIAL_DELAY: u64 = 100;
     const MAX_DELAY: u64 = 1000;
     const CHECK_NODE_COUNT: usize = 8;
