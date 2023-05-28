@@ -25,7 +25,7 @@ pub(super) async fn all_agent_info(
     evt_sender: &EventSender,
     space: &Arc<KitsuneSpace>,
 ) -> KitsuneResult<Vec<AgentInfoSigned>> {
-    tracing::error!("!!!all_agent_info!!!"); 
+    tracing::trace!("!!!all_agent_info!!!"); 
     evt_sender
         .query_agents(QueryAgentsEvt::new(space.clone()))
         .await
@@ -38,7 +38,7 @@ pub(super) async fn query_agent_info(
     space: &Arc<KitsuneSpace>,
     agents: &HashSet<Arc<KitsuneAgent>>,
 ) -> KitsuneResult<Vec<AgentInfoSigned>> {
-    tracing::error!("!!!query_agent_info!!!");
+    tracing::trace!("!!!query_agent_info!!!");
     let query = QueryAgentsEvt::new(space.clone()).by_agents(agents.clone());
     evt_sender
         .query_agents(query)
@@ -95,7 +95,7 @@ pub(super) async fn agents_within_arcset(
     space: &Arc<KitsuneSpace>,
     arc_set: Arc<DhtArcSet>,
 ) -> KitsuneResult<Vec<(Arc<KitsuneAgent>, DhtArc)>> {
-    tracing::error!("agents_within_arcset");
+    tracing::trace!("!!!agents_within_arcset!!!");
     Ok(evt_sender
         .query_agents(QueryAgentsEvt::new(space.clone()).by_arc_set(arc_set))
         .await

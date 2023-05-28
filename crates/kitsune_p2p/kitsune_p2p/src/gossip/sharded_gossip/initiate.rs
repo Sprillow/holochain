@@ -46,7 +46,7 @@ impl ShardedGossipLocal {
         {
             let id = rand::thread_rng().gen();
 
-            tracing::error!("!!!try_initiate!!!");
+            tracing::trace!("!!!try_initiate!!!");
             let agent_list = self
                 .evt_sender
                 .query_agents(
@@ -136,7 +136,7 @@ impl ShardedGossipLocal {
             .map(|(_, arc)| arc.into())
             .collect();
 
-        tracing::error!("!!!incoming_initiate!!!");
+        tracing::trace!("!!!incoming_initiate!!!");
         let agent_list = self
             .evt_sender
             .query_agents(

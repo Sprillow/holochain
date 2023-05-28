@@ -164,7 +164,7 @@ impl SpaceInternalHandler for Space {
     ) -> SpaceInternalHandlerResult<HashSet<Arc<KitsuneAgent>>> {
         let mut res: HashSet<Arc<KitsuneAgent>> =
             self.local_joined_agents.keys().cloned().collect();
-        tracing::error!("handle_list_online_agents_for_basis_hash");
+        tracing::trace!("!!!handle_list_online_agents_for_basis_hash!!!");
         let all_peers_fut = self
             .evt_sender
             .query_agents(QueryAgentsEvt::new(self.space.clone()));
@@ -348,7 +348,7 @@ impl SpaceInternalHandler for Space {
         mod_cnt: u32,
         data: BroadcastData,
     ) -> InternalHandlerResult<()> {
-        tracing::error!("handle_incoming_delegate_broadcast");
+        tracing::trace!("!!!handle_incoming_delegate_broadcast!!!");
         // first, forward this incoming broadcast to all connected
         // local agents.
         let mut local_notify_events = Vec::new();
@@ -408,7 +408,7 @@ impl SpaceInternalHandler for Space {
             futures::future::join_all(local_agent_info_events).await;
 
             let info_list = fut.await?;
-            tracing::error!("info_list: {:?}", info_list);
+            tracing::debug!("!!!info_list: {:?}", info_list);
             // for all agents in the gathered list, check the modulo params
             // i.e. if `agent.get_loc() % mod_cnt == mod_idx` we know we are
             // responsible for delegating the broadcast to that agent.

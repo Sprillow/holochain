@@ -154,7 +154,7 @@ pub(crate) fn search_remotes_covering_basis(
     basis_loc: DhtLocation,
     timeout: KitsuneTimeout,
 ) -> impl Future<Output = KitsuneP2pResult<Vec<AgentInfoSigned>>> + 'static + Send {
-    tracing::error!("search_remotes_covering_basis");
+    tracing::trace!("!!!search_remotes_covering_basis!!!");
     const INITIAL_DELAY: u64 = 100;
     const MAX_DELAY: u64 = 1000;
     const CHECK_NODE_COUNT: usize = 8;
@@ -265,7 +265,7 @@ pub(crate) fn get_cached_remotes_near_basis(
         let query = QueryAgentsEvt::new(inner.space.clone())
             .near_basis(basis_loc)
             .limit(LIMIT);
-        tracing::error!("get_cached_remotes_near_basis");
+        tracing::trace!("!!!get_cached_remotes_near_basis!!!");
         for node in inner.evt_sender.query_agents(query).await? {
             if !inner
                 .i_s

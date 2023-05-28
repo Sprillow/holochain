@@ -14,7 +14,7 @@ pub(crate) async fn handle_rpc_multi_as_single(
     ro_inner: Arc<SpaceReadOnlyInner>,
     local_joined_agents: HashSet<Arc<KitsuneAgent>>,
 ) -> KitsuneP2pResult<Vec<actor::RpcMultiResponse>> {
-    tracing::error!("handle_rpc_multi_as_single");
+    tracing::trace!("!!!handle_rpc_multi_as_single!!!");
     let RpcMulti {
         space,
         basis,
